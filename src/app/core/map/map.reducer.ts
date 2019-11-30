@@ -1,5 +1,5 @@
 import { MapState } from './map.models';
-import { authLogin, authLogout } from './map.actions';
+import { mapLoad, mapAddMarker } from './map.actions';
 import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: MapState = {
@@ -8,8 +8,8 @@ export const initialState: MapState = {
 
 const reducer = createReducer(
   initialState,
-  on(authLogin, state => ({ ...state, isAuthenticated: true })),
-  on(authLogout, state => ({ ...state, isAuthenticated: false }))
+  on(mapLoad, state => ({ ...state, isAuthenticated: true })),
+  on(mapAddMarker, state => ({ ...state, isAuthenticated: false }))
 );
 
 export function mapReducer(

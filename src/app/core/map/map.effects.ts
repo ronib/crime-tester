@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ofType, createEffect, Actions } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
-import { authLogin, authLogout } from './map.actions';
+import { mapLoad, mapAddMarker } from './map.actions';
 import { HttpClient, } from '@angular/common/http';
 
 export const MAP_KEY = 'MAP';
@@ -19,7 +19,7 @@ export class MapEffects {
   login = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(authLogin),
+        ofType(mapLoad),
         tap(() =>
           this.httpClient.get(MAP_KEY)
         )
@@ -30,7 +30,7 @@ export class MapEffects {
   logout = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(authLogout),
+        ofType(mapAddMarker),
         tap(() => {
           this.router.navigate(['']);
         //   this.localStorageService.setItem(AUTH_KEY, {

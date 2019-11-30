@@ -1,4 +1,4 @@
 import { createAction } from '@ngrx/store';
 
-export const authLogin = createAction('[Auth] Login');
-export const authLogout = createAction('[Auth] Logout');
+export const mapLoad = createAction('[Map] Load');
+export const mapAddMarker = createAction('[Map] Add Marker');
