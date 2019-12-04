@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575479217370,
+  "timestamp": 1575480175106,
   "index": "https://ronib.github.io/crime-tester/index.html",
   "assetGroups": [
     {
@@ -9,7 +9,8 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/index.html",
-        "https://ronib.github.io/crime-tester/main-es2018.1edc60d41c3150205024.js",
+        "https://ronib.github.io/crime-tester/main-es2018.c0a81420e4c6a6eeaf34.js",
+        "https://ronib.github.io/crime-tester/main-es5.c0a81420e4c6a6eeaf34.js",
         "https://ronib.github.io/crime-tester/manifest.webmanifest",
         "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js",
         "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
@@ -61,8 +62,9 @@
     "https://ronib.github.io/crime-tester/assets/marker3.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/assets/sw2.js": "715a902c11fbdca185118c158a92898c163ebeae",
     "https://ronib.github.io/crime-tester/curr.d70d69275ccf3d48f7f4.png": "9b198b6082f501f6c94cced9d8d843e7331a266a",
-    "https://ronib.github.io/crime-tester/index.html": "d7ed61f7f6816eae6b4cdc5f587e230e7b41fd45",
-    "https://ronib.github.io/crime-tester/main-es2018.1edc60d41c3150205024.js": "c86ed769513ad38f882372103c115986d2e91651",
+    "https://ronib.github.io/crime-tester/index.html": "4c040303311111b749f1816d821778148052ce20",
+    "https://ronib.github.io/crime-tester/main-es2018.c0a81420e4c6a6eeaf34.js": "3d1726be0805816823c4ff616359e92fd6b8bac3",
+    "https://ronib.github.io/crime-tester/main-es5.c0a81420e4c6a6eeaf34.js": "c1d55b317573137532d00bca3042840b87e0ee0e",
     "https://ronib.github.io/crime-tester/manifest.webmanifest": "f7d76dd52100d565b7ea58b7e7c042588784f69b",
     "https://ronib.github.io/crime-tester/marker3.6640673388eb5337253d.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
