@@ -111,11 +111,6 @@ export class MapComponent implements OnInit {
       this.displayCurrMarker(target);
     });
 
-
-    // currLoc['_geolocateButton'].click();
-
-
-
   }
 
   displayCurrMarker(target) {
@@ -146,7 +141,6 @@ export class MapComponent implements OnInit {
     const dataLine = [];
     this.prevEventMarkers.forEach(obj=>{
       obj.remove();
-      // console.log("remove");
     });
 
     markersData.forEach(marker => {
@@ -154,6 +148,11 @@ export class MapComponent implements OnInit {
       marker.points.forEach(point => {
         if (point.lat && point.lon) {
           let el = this.renderer2.createElement('div');
+          el.addEventListener('click', () => 
+            { 
+              console.log('click', marker);
+            }
+); 
           el.className = 'marker';
           const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
           let distanceFromThisMarkerToThePosition = distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
