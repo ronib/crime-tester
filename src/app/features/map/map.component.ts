@@ -15,7 +15,7 @@ import { loadMapData } from 'src/app/core/map/map.actions';
 export class MapComponent implements OnInit {
   map: mapboxgl.Map;
   markersData: any[];
-
+  mock = [{"updateTime":"2019-12-04T12:15:51.621Z","event":"POI","data":[{"owner":"killer","points":[{"lon":"32.090280","lat":"34.820134"},{"lon":"32.087415","lat":"34.812946"},{"lon":"32.090677","lat":"34.805180"},{"lon":"32.091011","lat":"34.804824"},{"lon":"32.091155","lat":"34.804372"}]}]}];
   constructor(private mapService: MapService, 
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>
@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
     // this.store.dispatch(loadMapData());
     
     this.mapService.get(environment.dataUrl).subscribe((response: any) => {
-      this.markersData = response[0].data;
+      this.markersData = this.mock[0].data;
       this.displayMap();
       this.displayMarkers();
        
