@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575485891218,
+  "timestamp": 1575493296278,
   "index": "https://ronib.github.io/crime-tester/index.html",
   "assetGroups": [
     {
@@ -9,7 +9,8 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/index.html",
-        "https://ronib.github.io/crime-tester/main-es2018.6b06ef4807fa236fec54.js",
+        "https://ronib.github.io/crime-tester/main-es2018.780faa67722b3cb51f9f.js",
+        "https://ronib.github.io/crime-tester/main-es5.780faa67722b3cb51f9f.js",
         "https://ronib.github.io/crime-tester/manifest.webmanifest",
         "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js",
         "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
@@ -58,8 +59,9 @@
     "https://ronib.github.io/crime-tester/assets/marker-black.png": "66fb96ea5824aed8754008ecbd9e3e9327fe1d9f",
     "https://ronib.github.io/crime-tester/assets/marker-red.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/assets/sw2.js": "715a902c11fbdca185118c158a92898c163ebeae",
-    "https://ronib.github.io/crime-tester/index.html": "f5c0313cf24ef579f182e74127cf812d151c1b0f",
-    "https://ronib.github.io/crime-tester/main-es2018.6b06ef4807fa236fec54.js": "10aa67182039c7d55acfec5f08a4e5dfae13b891",
+    "https://ronib.github.io/crime-tester/index.html": "4d92df864bcf54f1fa3b7e6b09ddb4d48869bc87",
+    "https://ronib.github.io/crime-tester/main-es2018.780faa67722b3cb51f9f.js": "65b84e7db97470c7e42f3f89c3c9aee9247cf788",
+    "https://ronib.github.io/crime-tester/main-es5.780faa67722b3cb51f9f.js": "b5f6ff50756f3dee4b1422e655f37f509207ccfc",
     "https://ronib.github.io/crime-tester/manifest.webmanifest": "f7d76dd52100d565b7ea58b7e7c042588784f69b",
     "https://ronib.github.io/crime-tester/marker-black.812a578269309cf272a5.png": "66fb96ea5824aed8754008ecbd9e3e9327fe1d9f",
     "https://ronib.github.io/crime-tester/marker-red.6640673388eb5337253d.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
