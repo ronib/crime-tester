@@ -6,6 +6,10 @@ import { MAP_INITIAL } from '../consts';
 import { Store } from '@ngrx/store';
 import { MapState } from 'src/app/core/map/map.models';
 import { loadMapData } from 'src/app/core/map/map.actions';
+import { Observable ,interval, Subscription} from 'rxjs';
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-map',
@@ -19,21 +23,41 @@ export class MapComponent implements OnInit {
   setIntervalId = null;
   map: mapboxgl.Map;
   markersData: any[];
+  mySubscription: Subscription;
+  lastIndex : number;
   mock = [{ "updateTime": "2019-12-04T12:15:51.621Z", "event": "POI", "data": [{ "owner": "killer", "points": [{ "lon": "32.090280", "lat": "34.820134" }, { "lon": "32.087415", "lat": "34.812946" }, { "lon": "32.090677", "lat": "34.805180" }, { "lon": "32.091011", "lat": "34.804824" }, { "lon": "32.091155", "lat": "34.804372" }] }] }];
   constructor(private mapService: MapService,
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>,
+    private http: HttpClient,
+  ) { 
+    this.mySubscription= interval(5000).subscribe((x =>{
+      this.doStuff();
+  }));
+  }
 
-  ) { }
+  doStuff(){
+    this.http.get('https://44.229.50.66:5002/data').subscribe((data: any) => { 
+      //console.log(data); 
+      if (data.length != this.lastIndex){
+        this.lastIndex = data.length;
+        console.log('writing index : ' + JSON.stringify(data[data.length-1]));
+        console.log(this.markersData);
+        this.markersData = data[data.length-1].data;
+       
+        this.displayMarkers(this.markersData);
+      }
+     });
+}
 
   ngOnInit() {
     this.setToken();
     // this.store.dispatch(loadMapData());
 
     // this.mapService.get(environment.dataUrl).subscribe((response: any) => {
-    this.markersData = this.mock[0].data;
+    //this.markersData = this.mock[0].data;
     this.displayMap();
-    this.displayMarkers();
+    //this.displayMarkers(this.markersData);
     this.addCurrButton();
 
     this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
@@ -63,7 +87,7 @@ export class MapComponent implements OnInit {
 
     navigator.geolocation.getCurrentPosition((pos) => {
       const target = [pos.coords.longitude, pos.coords.latitude] as mapboxgl.LngLatLike;
-      console.log("fly to", target);
+      //console.log("fly to", target);
       this.map.flyTo({
         // These options control the ending camera position: centered at
         // the target, at zoom level 9, and north up.
@@ -74,7 +98,7 @@ export class MapComponent implements OnInit {
         // These options control the flight curve, making it move
         // slowly and zoom out almost completely before starting
         // to pan.
-        speed: 0.4, // make the flying slow
+        speed: 1, // make the flying slow
         curve: 1, // change the speed at which it zooms out
 
         // This can be any easing function: it takes a number between
@@ -89,7 +113,6 @@ export class MapComponent implements OnInit {
         .addTo(this.map);
 
   });
-  
   
 
   // currLoc['_geolocateButton'].click();
@@ -107,22 +130,24 @@ displayMap() {
 
 
 
-displayMarkers() {
+displayMarkers(markersData:any[]) {
 
+  console.log('display markers');
   const dataLine = [];
-  this.markersData.forEach(marker => {
+  markersData.forEach(marker => {
     marker.points.forEach(point => {
-
-      let el = this.renderer2.createElement('div');
-      el.className = 'marker';
-      const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
-      dataLine.push(coordinate);
-      new mapboxgl.Marker(el)
-        .setLngLat(coordinate)
-        .setPopup(new mapboxgl.Popup({ offset: 25 })
-          .setHTML('<h3>' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
-        )
-        .addTo(this.map);
+      if (point.lat && point.lon){
+        let el = this.renderer2.createElement('div');
+        el.className = 'marker';
+        const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
+        dataLine.push(coordinate);
+        new mapboxgl.Marker(el)
+          .setLngLat(coordinate)
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<h3>' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
+          )
+          .addTo(this.map);
+      }
     });
 
 
