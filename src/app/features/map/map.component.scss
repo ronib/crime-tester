@@ -11,6 +11,14 @@
     cursor: pointer;
   }
 
+  .marker-curr {
+    background-image: url('../../../assets/mapbox-icon.png');
+    background-size: cover;
+    width: 20px;
+    height: 30px;
+    cursor: pointer;
+  }
+
   .marker2 {
     // background-size: cover;
     // width: 50px;

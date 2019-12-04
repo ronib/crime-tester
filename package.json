@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gh-deploy": "ngh --dir=dist/crime-tester",
+    "gh-build": "ng build --prod --base-href https://ronib.github.io/crime-tester/"
   },
   "private": true,
   "dependencies": {
