@@ -1,14 +1,14 @@
 import { MapState } from './map.models';
-import { mapLoad, mapAddMarker } from './map.actions';
+import { loadMapData, mapAddMarker } from './map.actions';
 import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: MapState = {
-  isAuthenticated: false
+  data: null
 };
 
 const reducer = createReducer(
   initialState,
-  on(mapLoad, state => ({ ...state, isAuthenticated: true })),
+  on(loadMapData, state => ({ ...state, data: true })),
   on(mapAddMarker, state => ({ ...state, isAuthenticated: false }))
 );
 

@@ -6,12 +6,11 @@ import { AppComponent } from './app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { MapComponent } from './features/map/map.component';
+import { MapModule } from './features/map.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +18,7 @@ import { MapComponent } from './features/map/map.component';
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
+    MapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

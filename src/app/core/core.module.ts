@@ -20,7 +20,15 @@ import { MapEffects } from './map/map.effects';
     HttpClientModule,
 
     // ngrx
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { 
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictStateSerializability: true
+      } 
+    }),
     EffectsModule.forRoot([
       MapEffects,
     ]),

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ofType, createEffect, Actions } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
-import { mapLoad, mapAddMarker } from './map.actions';
-import { HttpClient, } from '@angular/common/http';
+import { loadMapData, mapAddMarker } from './map.actions';
+import { MapService } from 'src/app/features/map.service';
 
 export const MAP_KEY = 'MAP';
 
@@ -12,16 +12,16 @@ export const MAP_KEY = 'MAP';
 export class MapEffects {
   constructor(
     private actions$: Actions,
-    private httpClient: HttpClient,
+    private mapService: MapService,
     private router: Router
   ) {}
 
   login = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(mapLoad),
+        ofType(loadMapData),
         tap(() =>
-          this.httpClient.get(MAP_KEY)
+          this.mapService.get(MAP_KEY)
         )
       ),
     { dispatch: false }

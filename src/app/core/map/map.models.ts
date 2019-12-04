@@ -1,3 +1,3 @@
 export interface MapState {
-    isAuthenticated: boolean;
+    data: any;
   }
