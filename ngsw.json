@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575473177274,
+  "timestamp": 1575478898293,
   "index": "https://ronib.github.io/crime-tester/index.html",
   "assetGroups": [
     {
@@ -9,12 +9,13 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/index.html",
-        "https://ronib.github.io/crime-tester/main-es2018.d4d497ffa2a738d2d630.js",
-        "https://ronib.github.io/crime-tester/main-es5.d4d497ffa2a738d2d630.js",
+        "https://ronib.github.io/crime-tester/main-es2018.1edc60d41c3150205024.js",
+        "https://ronib.github.io/crime-tester/main-es5.1edc60d41c3150205024.js",
         "https://ronib.github.io/crime-tester/manifest.webmanifest",
         "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js",
         "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
         "https://ronib.github.io/crime-tester/runtime-es2018.edb2fcf2778e7bf1d426.js",
+        "https://ronib.github.io/crime-tester/scripts.23dc081eae15f72ad416.js",
         "https://ronib.github.io/crime-tester/styles.d9dc716df0c684d997ec.css"
       ],
       "patterns": []
@@ -25,6 +26,7 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/assets/another.main.js",
+        "https://ronib.github.io/crime-tester/assets/curr.png",
         "https://ronib.github.io/crime-tester/assets/favicon.png",
         "https://ronib.github.io/crime-tester/assets/icons/icon-128x128.png",
         "https://ronib.github.io/crime-tester/assets/icons/icon-144x144.png",
@@ -37,6 +39,7 @@
         "https://ronib.github.io/crime-tester/assets/mapbox-icon.png",
         "https://ronib.github.io/crime-tester/assets/marker3.png",
         "https://ronib.github.io/crime-tester/assets/sw2.js",
+        "https://ronib.github.io/crime-tester/curr.d70d69275ccf3d48f7f4.png",
         "https://ronib.github.io/crime-tester/marker3.6640673388eb5337253d.png"
       ],
       "patterns": []
@@ -45,6 +48,7 @@
   "dataGroups": [],
   "hashTable": {
     "https://ronib.github.io/crime-tester/assets/another.main.js": "e0dad2f4200ac6cd3f791504abfba48fec7ed8a2",
+    "https://ronib.github.io/crime-tester/assets/curr.png": "9b198b6082f501f6c94cced9d8d843e7331a266a",
     "https://ronib.github.io/crime-tester/assets/favicon.png": "c4e8a34dfb7ef2ed0a91330d1b3797e4b5fcad8a",
     "https://ronib.github.io/crime-tester/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://ronib.github.io/crime-tester/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
@@ -57,14 +61,16 @@
     "https://ronib.github.io/crime-tester/assets/mapbox-icon.png": "422e0bc0125095c048ed0b6c27c7ae4ab9d6b72c",
     "https://ronib.github.io/crime-tester/assets/marker3.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/assets/sw2.js": "715a902c11fbdca185118c158a92898c163ebeae",
-    "https://ronib.github.io/crime-tester/index.html": "35953775d055f7a8c73e8dfba81b6a898aa5e3b5",
-    "https://ronib.github.io/crime-tester/main-es2018.d4d497ffa2a738d2d630.js": "3b7ae3bcda83ea1fda18b54141cf1242a4172591",
-    "https://ronib.github.io/crime-tester/main-es5.d4d497ffa2a738d2d630.js": "5216f5ccf28d65feac66786f8acdfa3e2cd13eda",
+    "https://ronib.github.io/crime-tester/curr.d70d69275ccf3d48f7f4.png": "9b198b6082f501f6c94cced9d8d843e7331a266a",
+    "https://ronib.github.io/crime-tester/index.html": "53b4144aaa63e8119b40d19e49dca04052418881",
+    "https://ronib.github.io/crime-tester/main-es2018.1edc60d41c3150205024.js": "a44ebf16494fe7fee7653194622251b9cba437f3",
+    "https://ronib.github.io/crime-tester/main-es5.1edc60d41c3150205024.js": "c86ed769513ad38f882372103c115986d2e91651",
     "https://ronib.github.io/crime-tester/manifest.webmanifest": "f7d76dd52100d565b7ea58b7e7c042588784f69b",
     "https://ronib.github.io/crime-tester/marker3.6640673388eb5337253d.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
     "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js": "9ceb13edd4b10268f661814868dadb2b284f9745",
     "https://ronib.github.io/crime-tester/runtime-es2018.edb2fcf2778e7bf1d426.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://ronib.github.io/crime-tester/scripts.23dc081eae15f72ad416.js": "17ad7f1939b11c061e028f632d849dab122b3d7d",
     "https://ronib.github.io/crime-tester/styles.d9dc716df0c684d997ec.css": "26453d47ec36430b523ace93361172ee2488aa30"
   },
   "navigationUrls": [
