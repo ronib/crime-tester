@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Renderer2, Output, EventEmitter } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { MapService } from '../map.service';
@@ -6,7 +6,7 @@ import { MAP_INITIAL } from '../consts';
 import { Store } from '@ngrx/store';
 import { MapState } from 'src/app/core/map/map.models';
 import { loadMapData } from 'src/app/core/map/map.actions';
-import { Observable ,interval, Subscription} from 'rxjs';
+import { Observable, interval, Subscription } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -24,31 +24,33 @@ export class MapComponent implements OnInit {
   map: mapboxgl.Map;
   markersData: any[];
   mySubscription: Subscription;
-  lastIndex : number;
+  lastIndex: number;
+  prevCurrMarker: any;
+  prevEventMarkers: any;
   mock = [{ "updateTime": "2019-12-04T12:15:51.621Z", "event": "POI", "data": [{ "owner": "killer", "points": [{ "lon": "32.090280", "lat": "34.820134" }, { "lon": "32.087415", "lat": "34.812946" }, { "lon": "32.090677", "lat": "34.805180" }, { "lon": "32.091011", "lat": "34.804824" }, { "lon": "32.091155", "lat": "34.804372" }] }] }];
   constructor(private mapService: MapService,
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>,
     private http: HttpClient,
-  ) { 
-    this.mySubscription= interval(5000).subscribe((x =>{
+  ) {
+    this.mySubscription = interval(5000).subscribe((x => {
       this.doStuff();
-  }));
+    }));
   }
 
-  doStuff(){
-    this.http.get(environment.dataUrl).subscribe((data: any) => { 
+  doStuff() {
+    this.http.get(environment.dataUrl).subscribe((data: any) => {
       //console.log(data); 
-      if (data.length != this.lastIndex){
+      if (data.length != this.lastIndex) {
         this.lastIndex = data.length;
-        console.log('writing index : ' + JSON.stringify(data[data.length-1]));
+        console.log('writing index : ' + JSON.stringify(data[data.length - 1]));
         console.log(this.markersData);
-        this.markersData = data[data.length-1].data;
-       
+        this.markersData = data[data.length - 1].data;
+
         this.displayMarkers(this.markersData);
       }
-     });
-}
+    });
+  }
 
   ngOnInit() {
     this.setToken();
@@ -58,15 +60,15 @@ export class MapComponent implements OnInit {
     //this.markersData = this.mock[0].data;
     this.displayMap();
     //this.displayMarkers(this.markersData);
-    this.addCurrButton();
+    this.addCurrentLocationButton();
 
     this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
-
+    this.prevEventMarkers = [];
     // });
 
   }
 
-  addCurrButton() {
+  addCurrentLocationButton() {
     const currLoc = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -104,121 +106,137 @@ export class MapComponent implements OnInit {
         easing: function (t) { return t; }
       });
 
-      let el = this.renderer2.createElement('div');
-      el.className = 'marker-curr';
-      new mapboxgl.Marker(el)
-        .setLngLat(target)
-        .addTo(this.map);
-
-  });
-  
-
-  // currLoc['_geolocateButton'].click();
-
-
-
-}
-
-displayMap() {
-  this.map = new mapboxgl.Map(MAP_INITIAL);
-
-  // Add map controls
-  this.map.addControl(new mapboxgl.NavigationControl());
-}
-
-
-
-displayMarkers(markersData:any[]) {
-
-  console.log('display markers');
-  const dataLine = [];
-  markersData.forEach(marker => {
-    console.log(marker);
-    marker.points.forEach(point => {
-      if (point.lat && point.lon){
-        let el = this.renderer2.createElement('div');
-        el.className = 'marker';
-        const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
-        dataLine.push(coordinate);
-        new mapboxgl.Marker(el)
-          .setLngLat(coordinate)
-          .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<h3 style="color:purple;">' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
-          )
-          .addTo(this.map);
-      }
+      this.displayCurrMarker(target);
     });
 
 
+    // currLoc['_geolocateButton'].click();
 
 
-  });
 
+  }
 
-  this.map.on('load', () => {
-    // Insert the layer beneath any symbol layer.
-    var layers = this.map.getStyle().layers;
-
-
-    var labelLayerId;
-    for (var i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-        labelLayerId = layers[i].id;
-        break;
-      }
+  displayCurrMarker(target) {
+    if (this.prevCurrMarker) {
+      this.prevCurrMarker.remove();
     }
 
-    this.map.addLayer({
-      'id': '3d-buildings',
-      'source': 'composite',
-      'source-layer': 'building',
-      'filter': ['==', 'extrude', 'true'],
-      'type': 'fill-extrusion',
-      'minzoom': 15,
-      'paint': {
-        'fill-extrusion-color': '#aaa',
+    let el = this.renderer2.createElement('div');
+    el.className = 'marker-curr';
+    this.prevCurrMarker = new mapboxgl.Marker(el);
 
-        // use an 'interpolate' expression to add a smooth transition effect to the
-        // buildings as the user zooms in
-        'fill-extrusion-height': [
-          "interpolate", ["linear"], ["zoom"],
-          15, 0,
-          15.05, ["get", "height"]
-        ],
-        'fill-extrusion-base': [
-          "interpolate", ["linear"], ["zoom"],
-          15, 0,
-          15.05, ["get", "min_height"]
-        ],
-        'fill-extrusion-opacity': .6
-      }
-    }, labelLayerId);
+    this.prevCurrMarker.setLngLat(target)
+      .addTo(this.map);
 
-    this.map.addLayer({
-      "id": "route",
-      "type": "line",
-      "source": {
-        "type": "geojson",
-        "data": {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "LineString",
-            "coordinates": dataLine
-          }
-        }
-      },
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round"
-      },
-      "paint": {
-        "line-color": "blue",
-        "line-width": 7
-      }
+  }
+
+  displayMap() {
+    this.map = new mapboxgl.Map(MAP_INITIAL);
+
+    // Add map controls
+    this.map.addControl(new mapboxgl.NavigationControl());
+  }
+
+
+
+  displayMarkers(markersData: any[]) {
+
+    console.log('display markers');
+    const dataLine = [];
+    this.prevEventMarkers.forEach(obj=>{
+      obj.remove();
+      // console.log("remove");
     });
-  });
 
-}
+    markersData.forEach(marker => {
+      // console.log(marker);
+      marker.points.forEach(point => {
+        if (point.lat && point.lon) {
+          let el = this.renderer2.createElement('div');
+          el.className = 'marker';
+          const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
+          dataLine.push(coordinate);
+          let markerObj = new mapboxgl.Marker(el);
+
+          markerObj.setLngLat(coordinate)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+              .setHTML('<h3 style="color:purple;">' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
+            )
+            .addTo(this.map);
+          this.prevEventMarkers.push(markerObj);
+        }
+      });
+
+
+
+
+    });
+
+
+    this.map.on('load', () => {
+      // Insert the layer beneath any symbol layer.
+      var layers = this.map.getStyle().layers;
+
+
+      var labelLayerId;
+      for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+          labelLayerId = layers[i].id;
+          break;
+        }
+      }
+
+      this.map.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'paint': {
+          'fill-extrusion-color': '#aaa',
+
+          // use an 'interpolate' expression to add a smooth transition effect to the
+          // buildings as the user zooms in
+          'fill-extrusion-height': [
+            "interpolate", ["linear"], ["zoom"],
+            15, 0,
+            15.05, ["get", "height"]
+          ],
+          'fill-extrusion-base': [
+            "interpolate", ["linear"], ["zoom"],
+            15, 0,
+            15.05, ["get", "min_height"]
+          ],
+          'fill-extrusion-opacity': .6
+        }
+      }, labelLayerId);
+
+      this.map.addLayer({
+        "id": "route",
+        "type": "line",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "LineString",
+              "coordinates": dataLine
+            }
+          }
+        },
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": "blue",
+          "line-width": 7
+        }
+      });
+    });
+
+  }
 }
 

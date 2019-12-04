@@ -9,7 +9,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gh-deploy": "ngh --dir=dist/crime-tester",
-    "gh-build": "ng build --prod --base-href https://ronib.github.io/crime-tester/"
+    "gh-build": "ng build --prod --base-href https://ronib.github.io/crime-tester/",
+    "gh-branch-clean": "git branch -D gh-pages",
+    "gh-branch": "git checkout -b gh-pages",
+    "deploy": "npm run gh-branch-clean && npm run gh-branch && npm run gh-build && npm run gh-deploy"
+
   },
   "private": true,
   "dependencies": {
