@@ -7,7 +7,11 @@ export const environment = {
   mapbox: {
     accessToken: 'pk.eyJ1IjoicmVzaGJldCIsImEiOiJjazJldW83cHIwOTVvM2dvZWdrZ2Z6dHoxIn0.dC17JvoskGT6-1NlddFthw'
   },
-  dataUrl: 'http://44.229.50.66:5000/data'  
+  pusher: {
+    key: 'PUSHER_API_KEY',
+    cluster: 'PUSHER_CLUSTER',
+  },
+  dataUrl: 'http://44.229.50.66:5000/data'
 };
 
 /*
