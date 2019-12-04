@@ -210,9 +210,23 @@
     content: 'Play';
     }
   .carusal{
-    width: 56%;
+    width: 500px;
+    
   }
 
   .carousel-inner{
-    height: 150px !important;
-}
+    // height: 150px !important;
+    height: 30vh;
+
+    .carousel-control-prev{
+      margin-left: 20% important;
+    }
+  }
+
+  .carousel-control-prev{
+    margin-left: 20% important;
+  }
+
+
+
+

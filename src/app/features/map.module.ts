@@ -6,19 +6,22 @@ import {FormsModule} from '@angular/forms';
 import {CasesComponent} from './cases/cases.component';
 import { CarusalComponent } from './carusal/carusal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventItemComponent } from './event-item/event-item.component';
+import { MatCard, MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     MapComponent,
     CameraComponent,
     CasesComponent,
-    CarusalComponent
+    CarusalComponent,
+    EventItemComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    NgbModule
-
+    NgbModule,
+    MatCardModule
   ],
   exports: [MapComponent, CameraComponent]
 })
