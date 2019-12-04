@@ -5,7 +5,7 @@ const center: LngLatLike = [telAvivLng, telAvivLat];
 export const MAP_INITIAL = {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    zoom: 13,
+    zoom: 11,
     center: center
 }
 
