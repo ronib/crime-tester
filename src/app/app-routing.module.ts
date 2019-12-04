@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MapComponent } from './features/map/map.component';
 import { CameraComponent } from './features/camera/camera.component';
+import {CasesComponent} from './features/cases/cases.component';
 
 
 const routes: Routes = [
@@ -17,8 +18,11 @@ const routes: Routes = [
   {
     path: 'camera',
     component: CameraComponent
+  },
+  {
+    path: 'cases',
+    component: CasesComponent
   }
-       
 ];
 
 @NgModule({
