@@ -34,9 +34,9 @@ export class MapComponent implements OnInit {
     this.markersData = this.mock[0].data;
     this.displayMap();
     this.displayMarkers();
+    this.addCurrButton();
 
-
-    this.setIntervalId = setInterval(() => { this.displayCurrentLocation(); }, 2000);
+    this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
 
 
     // this.displayCurrentLocation();
@@ -44,12 +44,22 @@ export class MapComponent implements OnInit {
 
   }
 
+  addCurrButton() {
+    const currLoc = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    });
+    this.map.addControl(currLoc);
+  }
+  
   setToken() {
     // mapboxgl.accessToken = environment.mapbox.accessToken;
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
   }
 
-  displayCurrentLocation() {
+  focusCurrentLocation() {
 
     navigator.geolocation.getCurrentPosition((pos) => {
       const target = [pos.coords.longitude, pos.coords.latitude] as mapboxgl.LngLatLike;
@@ -79,13 +89,8 @@ export class MapComponent implements OnInit {
         .addTo(this.map);
 
   });
-  // const currLoc = new mapboxgl.GeolocateControl({
-  //   positionOptions: {
-  //     enableHighAccuracy: true
-  //   },
-  //   trackUserLocation: true
-  // });
-  // this.map.addControl(currLoc);
+  
+  
 
   // currLoc['_geolocateButton'].click();
 
