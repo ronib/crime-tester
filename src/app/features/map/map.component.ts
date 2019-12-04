@@ -30,17 +30,15 @@ export class MapComponent implements OnInit {
     this.setToken();
     // this.store.dispatch(loadMapData());
 
-    // this.mapService.get(environment.dataUrl).subscribe((response: any) => {
-    this.markersData = this.mock[0].data;
+    this.mapService.get(environment.dataUrl).subscribe((response: any) => {
+    this.markersData = response[0].data;
     this.displayMap();
     this.displayMarkers();
     this.addCurrButton();
 
     this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
 
-
-    // this.displayCurrentLocation();
-    // });
+    });
 
   }
 
