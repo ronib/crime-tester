@@ -73,7 +73,7 @@ export class MapComponent implements OnInit {
       });
 
       let el = this.renderer2.createElement('div');
-      el.className = 'marker-curr';
+      el.className = 'marker';
       new mapboxgl.Marker(el)
         .setLngLat(target)
         .addTo(this.map);
