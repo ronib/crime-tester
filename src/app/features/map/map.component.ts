@@ -53,7 +53,7 @@ export class MapComponent implements OnInit {
     });
     this.map.addControl(currLoc);
   }
-  
+
   setToken() {
     // mapboxgl.accessToken = environment.mapbox.accessToken;
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
@@ -74,7 +74,7 @@ export class MapComponent implements OnInit {
         // These options control the flight curve, making it move
         // slowly and zoom out almost completely before starting
         // to pan.
-        speed: 0.2, // make the flying slow
+        speed: 0.4, // make the flying slow
         curve: 1, // change the speed at which it zooms out
 
         // This can be any easing function: it takes a number between
@@ -83,7 +83,7 @@ export class MapComponent implements OnInit {
       });
 
       let el = this.renderer2.createElement('div');
-      el.className = 'marker';
+      el.className = 'marker-curr';
       new mapboxgl.Marker(el)
         .setLngLat(target)
         .addTo(this.map);
