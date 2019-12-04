@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
   }
 
   doStuff(){
-    this.http.get('https://44.229.50.66:5002/data').subscribe((data: any) => { 
+    this.http.get(environment.dataUrl).subscribe((data: any) => { 
       //console.log(data); 
       if (data.length != this.lastIndex){
         this.lastIndex = data.length;
@@ -133,6 +133,7 @@ displayMarkers(markersData:any[]) {
   console.log('display markers');
   const dataLine = [];
   markersData.forEach(marker => {
+    console.log(marker);
     marker.points.forEach(point => {
       if (point.lat && point.lon){
         let el = this.renderer2.createElement('div');
@@ -142,7 +143,7 @@ displayMarkers(markersData:any[]) {
         new mapboxgl.Marker(el)
           .setLngLat(coordinate)
           .setPopup(new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<h3>' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
+            .setHTML('<h3 style="color:purple;">' + marker.owner + '</h3><p>' + 'description 1234567890' + '</p>')
           )
           .addTo(this.map);
       }

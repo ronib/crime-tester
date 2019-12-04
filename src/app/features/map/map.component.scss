@@ -3,70 +3,59 @@
 }
 
 .map-container {
-    
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+}
 
-  }
+.marker {
+  background-image: url("../../../assets/marker-red.png");
+  background-size: cover;
+  width: 20px;
+  height: 30px;
+  cursor: pointer;
+}
 
-  .marker {
-    background-image: url('../../../assets/marker-red.png');
-    background-size: cover;
-    width: 20px;
-    height: 30px;
-    cursor: pointer;
-  }
+.marker-curr {
+  background-image: url("../../../assets/marker-black.png");
+  background-size: cover;
+  width: 30px;
+  height: 40px;
+  cursor: pointer;
+}
 
-  .marker-curr {
-    background-image: url('../../../assets/marker-black.png');
-    background-size: cover;
-    width: 30px;
-    height: 40px;
-    cursor: pointer;
-  }
+.content {
+  display: flex;
+  // margin: 32px auto;
+  // padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
 
-  
+.mapboxgl-popup {
+  max-width: 200px;
+}
 
-  .content {
-    display: flex;
-    margin: 32px auto;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-  }
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
 
-  
+.carusal {
+  width: 500px;
+}
 
-  .mapboxgl-popup {
-    max-width: 200px;
-  }
-  
-  .mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-  }
+.carousel-inner {
+  // height: 150px !important;
+  height: 30vh;
 
-  .carusal{
-    width: 500px;
-    
-  }
-
-  .carousel-inner{
-    // height: 150px !important;
-    height: 30vh;
-
-    .carousel-control-prev{
-      margin-left: 20% important;
-    }
-  }
-
-  .carousel-control-prev{
+  .carousel-control-prev {
     margin-left: 20% important;
   }
+}
 
-
-
-
+.carousel-control-prev {
+  margin-left: 20% important;
+}
