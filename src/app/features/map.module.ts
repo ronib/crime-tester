@@ -4,16 +4,21 @@ import { MapComponent } from './map/map.component';
 import { CameraComponent } from './camera/camera.component';
 import {FormsModule} from '@angular/forms';
 import {CasesComponent} from './cases/cases.component';
+import { CarusalComponent } from './carusal/carusal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     MapComponent,
     CameraComponent,
-    CasesComponent
+    CasesComponent,
+    CarusalComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
+
   ],
   exports: [MapComponent, CameraComponent]
 })
