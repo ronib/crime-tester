@@ -187,4 +187,32 @@
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   }
 
+  .mapboxgl-popup {
+    max-width: 200px;
+  }
   
+  .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .pause {
+    position: absolute;
+    margin: 20px;
+    z-index: 99;
+    }
+     
+    #pause::after {
+    content: 'Pause';
+    }
+     
+    #pause.pause::after {
+    content: 'Play';
+    }
+  .carusal{
+    width: 56%;
+  }
+
+  .carousel-inner{
+    height: 150px !important;
+}

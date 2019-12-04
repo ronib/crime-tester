@@ -23,6 +23,7 @@
     "@angular/pwa": "^0.803.20",
     "@angular/router": "~8.2.14",
     "@angular/service-worker": "~8.2.14",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@ngrx/effects": "^8.5.2",
     "@ngrx/entity": "^8.5.2",
     "@ngrx/store": "^8.5.2",
