@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575472555405,
+  "timestamp": 1575472980355,
   "index": "https://ronib.github.io/crime-tester/index.html",
   "assetGroups": [
     {
@@ -9,7 +9,8 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/index.html",
-        "https://ronib.github.io/crime-tester/main-es2018.e1ec937d9f318148428a.js",
+        "https://ronib.github.io/crime-tester/main-es2018.bb9cc6ef1d760706a6b8.js",
+        "https://ronib.github.io/crime-tester/main-es5.bb9cc6ef1d760706a6b8.js",
         "https://ronib.github.io/crime-tester/manifest.webmanifest",
         "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js",
         "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
@@ -56,8 +57,9 @@
     "https://ronib.github.io/crime-tester/assets/mapbox-icon.png": "422e0bc0125095c048ed0b6c27c7ae4ab9d6b72c",
     "https://ronib.github.io/crime-tester/assets/marker3.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/assets/sw2.js": "715a902c11fbdca185118c158a92898c163ebeae",
-    "https://ronib.github.io/crime-tester/index.html": "a3d263265bc647b5c262ce0c3b80a8cb91e6020d",
-    "https://ronib.github.io/crime-tester/main-es2018.e1ec937d9f318148428a.js": "faa08ad6fdfdd014490bbac7c2330b6f250dba81",
+    "https://ronib.github.io/crime-tester/index.html": "429677d681d07b54b6bef7a1e88d4ed62807976b",
+    "https://ronib.github.io/crime-tester/main-es2018.bb9cc6ef1d760706a6b8.js": "e8704202965a3886bca94f25d76d9498b2ff0de8",
+    "https://ronib.github.io/crime-tester/main-es5.bb9cc6ef1d760706a6b8.js": "40908fd7c90c1f5fd0b68ec242c8bca57e935d49",
     "https://ronib.github.io/crime-tester/manifest.webmanifest": "f7d76dd52100d565b7ea58b7e7c042588784f69b",
     "https://ronib.github.io/crime-tester/marker3.6640673388eb5337253d.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
