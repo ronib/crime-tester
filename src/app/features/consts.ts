@@ -5,7 +5,7 @@ const telAvivLat = 32.109333;
     const firstLon = 34.820134;
 const centerTA: LngLatLike = [telAvivLng, telAvivLat];
 const centerSF: LngLatLike = [-122.48369693756104,  37.83381888486939];
-const centerPT: LngLatLike = [firstLat,  firstLon];
+const centerPT: LngLatLike = [  firstLon, firstLat];
 
 export const MAP_INITIAL = {
     container: 'map',
