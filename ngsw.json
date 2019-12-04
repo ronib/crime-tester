@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575494172814,
+  "timestamp": 1575498785613,
   "index": "https://ronib.github.io/crime-tester/index.html",
   "assetGroups": [
     {
@@ -9,8 +9,8 @@
       "updateMode": "prefetch",
       "urls": [
         "https://ronib.github.io/crime-tester/index.html",
-        "https://ronib.github.io/crime-tester/main-es2018.cd35be549e20da9fae36.js",
-        "https://ronib.github.io/crime-tester/main-es5.cd35be549e20da9fae36.js",
+        "https://ronib.github.io/crime-tester/main-es2018.342e99aad7ad24ed401f.js",
+        "https://ronib.github.io/crime-tester/main-es5.342e99aad7ad24ed401f.js",
         "https://ronib.github.io/crime-tester/manifest.webmanifest",
         "https://ronib.github.io/crime-tester/polyfills-es2018.2987770fde9daa1d8a2e.js",
         "https://ronib.github.io/crime-tester/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
@@ -59,9 +59,9 @@
     "https://ronib.github.io/crime-tester/assets/marker-black.png": "66fb96ea5824aed8754008ecbd9e3e9327fe1d9f",
     "https://ronib.github.io/crime-tester/assets/marker-red.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
     "https://ronib.github.io/crime-tester/assets/sw2.js": "715a902c11fbdca185118c158a92898c163ebeae",
-    "https://ronib.github.io/crime-tester/index.html": "ff49478645d6fdaf5de013de628489ea8112c3d1",
-    "https://ronib.github.io/crime-tester/main-es2018.cd35be549e20da9fae36.js": "f3c8c7478113015c10b417746f13b62b8e4e1374",
-    "https://ronib.github.io/crime-tester/main-es5.cd35be549e20da9fae36.js": "de748b5c2b5ab41b13a93f9f2e06dcd5b419ba10",
+    "https://ronib.github.io/crime-tester/index.html": "1fa50554b70c8c901756c222f5b1d7ee01bbd28a",
+    "https://ronib.github.io/crime-tester/main-es2018.342e99aad7ad24ed401f.js": "25a9071e95e33b99608a26b4d94dd971e14f3528",
+    "https://ronib.github.io/crime-tester/main-es5.342e99aad7ad24ed401f.js": "7d262429f42e925172c63686b0e4aca59782f352",
     "https://ronib.github.io/crime-tester/manifest.webmanifest": "f7d76dd52100d565b7ea58b7e7c042588784f69b",
     "https://ronib.github.io/crime-tester/marker-black.812a578269309cf272a5.png": "66fb96ea5824aed8754008ecbd9e3e9327fe1d9f",
     "https://ronib.github.io/crime-tester/marker-red.6640673388eb5337253d.png": "2574d7f3d595528507a4261272c3ceb4495bf081",
