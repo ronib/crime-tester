@@ -1,7 +1,25 @@
 video {
-  width: 90%;
-  padding-left:5%;
-  padding-top:20px;
+  width: 100vw;
+}
+
+div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  video {
+    width: 100vw;
+  }
+  div.snapshot-btn {
+    border: solid 4px white;
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    left: calc(50% - 40px);
+    opacity: 0.8;
+  }
 }
 
 .filter {

@@ -1,5 +1,8 @@
-<input [ngModel]="blur" type="checkbox" (change)="blur = !blur" class="filter">Blur
+<!--<input [ngModel]="blur" type="checkbox" (change)="blur = !blur" class="filter">Blur
 <input [ngModel]="sepia" type="checkbox" (change)="sepia = !sepia" class="filter">Sepia
 <input [ngModel]="invert" type="checkbox" (change)="invert = !invert" class="filter">Invert
-<input [ngModel]="flip" type="checkbox" (change)="flip = !flip" class="filter">Flip
+<input [ngModel]="flip" type="checkbox" (change)="flip = !flip" class="filter">Flip-->
+<div>
 <video #camera autoplay playinline [ngStyle]="videoStyle()"></video>
+  <div class="snapshot-btn" (click)="captureImage()"></div>
+</div>

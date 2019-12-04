@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+const scale = 0.25;
 
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss']
 })
+
+
 export class CameraComponent implements OnInit {
   @ViewChild('camera', {static: true}) video;
   blur: boolean;
@@ -21,6 +24,17 @@ export class CameraComponent implements OnInit {
     }).then(stream => {
       this.video.nativeElement.srcObject = stream;
     });
+  }
+
+  captureImage() {
+    const canvas = document.createElement('canvas');
+    canvas.width = this.video.nativeElement.videoWidth * scale;
+    canvas.height = this.video.nativeElement.videoHeight * scale;
+    canvas.getContext('2d')
+      .drawImage(this.video.nativeElement, 0, 0, canvas.width, canvas.height);
+
+    const base64 = canvas.toDataURL();
+    console.log(base64);
   }
 
   videoStyle() {
