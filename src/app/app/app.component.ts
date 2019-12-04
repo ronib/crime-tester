@@ -14,10 +14,10 @@ export class AppComponent {
   onbeforeinstallprompt(e) {
    // if (environment.enablePWAInstallationPopup) {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
+      // e.preventDefault();
       // Stash the event so it can be triggered later.
-      this.deferredPrompt = e;
-      this.addToHomeScreen();
+    this.deferredPrompt = e;
+    this.addToHomeScreen();
    // }
   }
 
