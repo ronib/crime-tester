@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, OnInit, Renderer2, Output, EventEmitter} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { MapService } from '../map.service';
@@ -30,15 +30,15 @@ export class MapComponent implements OnInit {
     this.setToken();
     // this.store.dispatch(loadMapData());
 
-    this.mapService.get(environment.dataUrl).subscribe((response: any) => {
-    this.markersData = response[0].data;
+    // this.mapService.get(environment.dataUrl).subscribe((response: any) => {
+    this.markersData = this.mock[0].data;
     this.displayMap();
     this.displayMarkers();
     this.addCurrButton();
 
     this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
 
-    });
+    // });
 
   }
 
