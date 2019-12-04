@@ -6,8 +6,6 @@ import { tap } from 'rxjs/operators';
 import { loadMapData, mapAddMarker } from './map.actions';
 import { MapService } from 'src/app/features/map.service';
 
-export const MAP_KEY = 'MAP';
-
 @Injectable()
 export class MapEffects {
   constructor(
@@ -16,16 +14,19 @@ export class MapEffects {
     private router: Router
   ) {}
 
-  login = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(loadMapData),
-        tap(() =>
-          this.mapService.get(MAP_KEY)
-        )
-      ),
-    { dispatch: false }
-  );
+  // login = createEffect(
+  //   () =>
+  //     // this.actions$.pipe(
+  //     //   ofType(loadMapData),
+  //     //   concatMap(() =>
+  //     //     this.mapService.get(environment.dataUrl)
+  //     //   ),
+  //     //   map((results) => {
+  //     //     console.log(results);
+  //     //     return mapLoaded({ users, adMode, gridConfigRequest });
+  //     // })
+  //     // ),
+  // );
 
   logout = createEffect(
     () =>

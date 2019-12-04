@@ -14,7 +14,8 @@ import { loadMapData } from 'src/app/core/map/map.actions';
 })
 export class MapComponent implements OnInit {
   map: mapboxgl.Map;
-  
+  markersData: any[];
+
   constructor(private mapService: MapService, 
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>
@@ -22,13 +23,15 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.setToken();
-    this.store.dispatch(loadMapData());
+    // this.store.dispatch(loadMapData());
     
     this.mapService.get(environment.dataUrl).subscribe((response: any) => {
-      console.log(response);
+      this.markersData = response[0].data;
+      this.displayMap();
+      this.displayMarkers();
+       
     });
-    this.displayMap();
-    this.buildMarkers();
+    
   }
 
   setToken() {
@@ -43,10 +46,16 @@ export class MapComponent implements OnInit {
     this.map.addControl(new mapboxgl.NavigationControl());
   }
 
-  buildMarkers() {
-    const markersData = this.mapService.getMockData();
-    console.log(markersData);
-    markersData.features.forEach(marker => {
+  displayMarkers() {
+    this.markersData.forEach(marker => {
+      marker.points.forEach(point => {
+        let el = this.renderer2.createElement('div');
+        el.className = 'marker';
+        const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
+        new mapboxgl.Marker(el)
+          .setLngLat(coordinate)
+          .addTo(this.map);
+      });
       // create a HTML element for each feature
       // let el = document.createElement('div');
       // el.className = 'marker2';
@@ -58,12 +67,7 @@ export class MapComponent implements OnInit {
       //   .setLngLat(marker.geometry.coordinates as mapboxgl.LngLatLike)
       //   .addTo(this.map);
 
-      let el = this.renderer2.createElement('div');
       
-      el.className = 'marker';
-      new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates as mapboxgl.LngLatLike)
-        .addTo(this.map);
       
     });
 

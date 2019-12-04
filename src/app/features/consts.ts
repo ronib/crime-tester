@@ -1,6 +1,7 @@
 import { LngLatLike } from 'mapbox-gl';
-
-const center: LngLatLike = [-122.41, 37.75];
+const telAvivLat = 32.109333;
+    const telAvivLng = 34.855499 ;
+const center: LngLatLike = [telAvivLng, telAvivLat];
 export const MAP_INITIAL = {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
