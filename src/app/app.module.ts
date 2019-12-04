@@ -9,10 +9,12 @@ import { SharedModule } from './shared/shared.module';
 import { MapModule } from './features/map.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { environment } from '../environments/environment';
     CoreModule,
     SharedModule,
     MapModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
