@@ -23,6 +23,7 @@ export class MapComponent implements OnInit {
   setIntervalId = null;
   map: mapboxgl.Map;
   markersData: any[];
+  currentPosition : any;
   mySubscription: Subscription;
   lastIndex: number;
   prevCurrMarker: any;
@@ -87,6 +88,7 @@ export class MapComponent implements OnInit {
 
     navigator.geolocation.getCurrentPosition((pos) => {
       const target = [pos.coords.longitude, pos.coords.latitude] as mapboxgl.LngLatLike;
+      this.currentPosition = target;
       //console.log("fly to", target);
       this.map.flyTo({
         // These options control the ending camera position: centered at
@@ -140,8 +142,7 @@ export class MapComponent implements OnInit {
 
 
   displayMarkers(markersData: any[]) {
-
-    console.log('display markers');
+    
     const dataLine = [];
     this.prevEventMarkers.forEach(obj=>{
       obj.remove();
@@ -155,6 +156,7 @@ export class MapComponent implements OnInit {
           let el = this.renderer2.createElement('div');
           el.className = 'marker';
           const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
+          let distanceFromThisMarkerToThePosition = distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
           dataLine.push(coordinate);
           let markerObj = new mapboxgl.Marker(el);
 
@@ -171,6 +173,21 @@ export class MapComponent implements OnInit {
 
 
     });
+
+    function distance(lat1,lon1,lat2,lon2) {
+      var R = 6371; // km (change this constant to get miles)
+      var dLat = (lat2-lat1) * Math.PI / 180;
+      var dLon = (lon2-lon1) * Math.PI / 180;
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180 ) * Math.cos(lat2 * Math.PI / 180 ) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      var d = R * c;
+      //if (d>1) return Math.round(d)+"km";
+      //else if (d<=1) 
+        return Math.round(d*1000);
+      //return d;
+    }
 
 
     this.map.on('load', () => {
