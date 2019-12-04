@@ -6,7 +6,6 @@ import { MAP_INITIAL } from '../consts';
 import { Store } from '@ngrx/store';
 import { MapState } from 'src/app/core/map/map.models';
 import { loadMapData } from 'src/app/core/map/map.actions';
-import { AComponent } from 'src/app/a/a.component';
 
 @Component({
   selector: 'app-map',
