@@ -1,28 +1,45 @@
-<ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-       
-      <app-event-item [data]="'slice1'"></app-event-item>
-      <!-- <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div> -->
-    </ng-template>
-    <ng-template ngbSlide>
-          
-      <app-event-item [data]="'slice2'"></app-event-item>
-      <!-- <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div> -->
-    </ng-template>
-    <ng-template ngbSlide>
-      <app-event-item [data]="'slice3'"></app-event-item>
-      <!-- <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div> -->
-    </ng-template>
-  </ngb-carousel>
+<mdb-carousel [animation]="'slide'"  >
+  <mdb-carousel-item *ngFor="let item of items">
 
- 
-  
+
+<!--    <div class="image" *ngIf="item.image">-->
+<!--      <img class="aaa" mat-card-image src="{{item.image}}">-->
+<!--    </div>-->
+    <app-event-item [data]="item"></app-event-item>
+  </mdb-carousel-item>
+<!--  <mdb-carousel-item>-->
+<!--    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">-->
+<!--  </mdb-carousel-item>-->
+<!--  <mdb-carousel-item>-->
+<!--    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">-->
+<!--  </mdb-carousel-item>-->
+</mdb-carousel>
+
+
+<!--<ngb-carousel *ngIf="images">-->
+<!--    <ng-template ngbSlide>-->
+<!--       -->
+<!--      <app-event-item [data]="'slice1'"></app-event-item>-->
+<!--      &lt;!&ndash; <div class="carousel-caption">-->
+<!--        <h3>First slide label</h3>-->
+<!--        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+<!--      </div> &ndash;&gt;-->
+<!--    </ng-template>-->
+<!--    <ng-template ngbSlide>-->
+<!--          -->
+<!--      <app-event-item [data]="'slice2'"></app-event-item>-->
+<!--      &lt;!&ndash; <div class="carousel-caption">-->
+<!--        <h3>Second slide label</h3>-->
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+<!--      </div> &ndash;&gt;-->
+<!--    </ng-template>-->
+<!--    <ng-template ngbSlide>-->
+<!--      <app-event-item [data]="'slice3'"></app-event-item>-->
+<!--      &lt;!&ndash; <div class="carousel-caption">-->
+<!--        <h3>Third slide label</h3>-->
+<!--        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
+<!--      </div> &ndash;&gt;-->
+<!--    </ng-template>-->
+<!--  </ngb-carousel>-->
+
+

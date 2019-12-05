@@ -28,7 +28,31 @@ export class MapComponent implements OnInit {
   lastIndex: number;
   prevCurrMarker: any;
   prevEventMarkers: any;
+
   mock = [{ "updateTime": "2019-12-04T12:15:51.621Z", "event": "POI", "data": [{ "owner": "killer", "points": [{ "lon": "32.090280", "lat": "34.820134" }, { "lon": "32.087415", "lat": "34.812946" }, { "lon": "32.090677", "lat": "34.805180" }, { "lon": "32.091011", "lat": "34.804824" }, { "lon": "32.091155", "lat": "34.804372" }] }] }];
+
+  items = [{
+    type: 'Call',
+    from: 'Itai',
+    to: 'Oren'
+  }
+    ,
+    {
+      type: 'SMS',
+      body: 'זרקתי את הנשק',
+      from: 'Itai',
+      to: 'David',
+      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
+    },
+
+    {
+      type: 'image',
+      from: 'Itai',
+      to: 'David',
+      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
+    }
+  ];
+
   constructor(private mapService: MapService,
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>,
@@ -41,7 +65,7 @@ export class MapComponent implements OnInit {
 
   doStuff() {
     this.http.get(environment.dataUrl).subscribe((data: any) => {
-      //console.log(data); 
+      //console.log(data);
       if (data.length != this.lastIndex) {
         this.lastIndex = data.length;
         console.log('writing index : ' + JSON.stringify(data[data.length - 1]));
@@ -137,7 +161,7 @@ export class MapComponent implements OnInit {
 
 
   displayMarkers(markersData: any[]) {
-    
+
     const dataLine = [];
     this.prevEventMarkers.forEach(obj=>{
       obj.remove();
@@ -148,11 +172,11 @@ export class MapComponent implements OnInit {
       marker.points.forEach(point => {
         if (point.lat && point.lon) {
           let el = this.renderer2.createElement('div');
-          el.addEventListener('click', () => 
-            { 
+          el.addEventListener('click', () =>
+            {
               console.log('click', marker);
             }
-); 
+);
           el.className = 'marker';
           const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
           let distanceFromThisMarkerToThePosition = distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
@@ -183,7 +207,7 @@ export class MapComponent implements OnInit {
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       var d = R * c;
       //if (d>1) return Math.round(d)+"km";
-      //else if (d<=1) 
+      //else if (d<=1)
         return Math.round(d*1000);
       //return d;
     }

@@ -44,18 +44,19 @@
 }
 
 .carusal {
-  width: 500px;
+  width: 100vw;
+  height: 20vh;
 }
 
-.carousel-inner {
-  // height: 150px !important;
-  height: 30vh;
-
-  .carousel-control-prev {
-    margin-left: 20% important;
-  }
-}
-
-.carousel-control-prev {
-  margin-left: 20% important;
-}
+//.carousel-inner {
+//  // height: 150px !important;
+//  height: 30vh;
+//
+//  .carousel-control-prev {
+//    margin-left: 20% important;
+//  }
+//}
+//
+//.carousel-control-prev {
+//  margin-left: 20% important;
+//}//
