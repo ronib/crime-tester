@@ -3,6 +3,7 @@
 <input [ngModel]="invert" type="checkbox" (change)="invert = !invert" class="filter">Invert
 <input [ngModel]="flip" type="checkbox" (change)="flip = !flip" class="filter">Flip-->
 <div>
+  <button class="back-btn" (click)="back2map()"><</button>
 <video #camera autoplay playinline [ngStyle]="videoStyle()"></video>
   <div class="snapshot-btn" (click)="captureImage()"></div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 const scale = 0.25;
 
 @Component({
@@ -14,7 +16,11 @@ export class CameraComponent implements OnInit {
   sepia: boolean;
   invert: boolean;
   flip: boolean;
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  back2map() {
+    this.router.navigate(['/map']);
+  }
 
   ngOnInit() {
     navigator.mediaDevices.getUserMedia({
@@ -34,7 +40,10 @@ export class CameraComponent implements OnInit {
       .drawImage(this.video.nativeElement, 0, 0, canvas.width, canvas.height);
 
     const base64 = canvas.toDataURL();
-    console.log(base64);
+    /// console.log(base64);
+    this.http.post('http://10.9.6.186:9191/api/v1/crimetracer/pushevent', {data:  base64}, {}).subscribe(() => {
+      console.log('evidence sent');
+    });
   }
 
   videoStyle() {

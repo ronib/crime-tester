@@ -6,9 +6,8 @@ import {CasesComponent} from './features/cases/cases.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'map',
+  { path: '',
+    redirectTo: '/map',
     pathMatch: 'full'
   },
   {

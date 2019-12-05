@@ -19,6 +19,18 @@ div {
     bottom: 10px;
     left: calc(50% - 40px);
     opacity: 0.8;
+    cursor: pointer;
+  }
+  button.back-btn {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 34px;
+    font-weight: bold;
+    opacity: 0.9;
+    cursor: pointer;
+    z-index: 1000;
   }
 }
 
