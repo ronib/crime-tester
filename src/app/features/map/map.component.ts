@@ -41,10 +41,10 @@ export class MapComponent implements OnInit {
   items1 = [{
     type: 'Call',
     from: 'Itai',
-    fromOwner : true,
-    toOwner : false,
+    fromOwner: true,
+    toOwner: false,
     to: 'Oren',
-    duration : "00:00:15"
+    duration: "00:00:15"
   }
     ,
   {
@@ -52,6 +52,8 @@ export class MapComponent implements OnInit {
     body: 'זרקתי את הנשק',
     from: 'Itai',
     to: 'David',
+    fromOwner: false,
+    toOwner: true,
     image: 'https://ichef.bbci.co.uk/news/660/cpsprodpb/6C7F/production/_106957772_mediaitem106957771.jpg'
   },
 
@@ -70,7 +72,7 @@ export class MapComponent implements OnInit {
     }
     ,
     {
-      type: 'SMS',
+      type: 'Sms',
       body: 'החלפתי את הכדורים',
       from: 'Itai',
       to: 'Drug Dealer',
@@ -106,7 +108,7 @@ export class MapComponent implements OnInit {
       to: 'Oren'
     },
     {
-      type: 'SMS',
+      type: 'Sms',
       body: 'זרקתי את הנשק',
       from: 'Itai',
       to: 'David',
@@ -286,7 +288,7 @@ export class MapComponent implements OnInit {
       }
 
       if (this.index >= 5)
-        this.items = [];
+        this.index == 0;
     }
 
     return;

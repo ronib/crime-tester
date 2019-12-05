@@ -1,15 +1,24 @@
 <div class="event-item">
 
   <div class="contnet">
-    <div  *ngIf="data.type">Type:{{data.type}}</div>
+    
+    
+    <i *ngIf='data.type=="Call"' class="fas fa-phone-volume fa-2x"></i>
+    <i *ngIf='data.type=="Sms"' class="fas fas fa-sms fa-2x"></i>
+    <i *ngIf='data.type=="image"' class="fas fas fa-images fa-2x"></i>
+
+    <div *ngIf="data.from && data.fromOwner===true"><strong>From: {{data.from}}</strong></div>
+    <div *ngIf="data.to && data.toOwner===true"><strong>To: {{data.to}}</strong></div>
+
+    <div *ngIf="data.from && data.fromOwner===false">From: {{data.from}}</div>
+    <div *ngIf="data.to && data.toOwner===false">To: {{data.to}}</div>
+
+    <div *ngIf="data.duration">Duration: {{data.duration}}</div>
+
     <div *ngIf="data.body">
       Body:{{data.body}}
     </div>
-    <div *ngIf="data.from && data.fromOwner===true"><strong>From: {{data.from}}</strong></div>
-    <div *ngIf="data.from && data.fromOwner===false">From: {{data.from}}</div>
-    <div *ngIf="data.to && data.toOwner===true"><strong>To: {{data.to}}</strong></div>
-    <div *ngIf="data.to && data.toOwner===false">To: {{data.to}}</div>
-    <div *ngIf="data.duration">Duration: {{data.duration}}</div>
+
   </div>
   <div class="image" *ngIf="data.image">
     <img class="aaa" mat-card-image src="{{data.image}}">
