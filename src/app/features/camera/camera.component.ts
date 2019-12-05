@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 const scale = 0.25;
 
 @Component({
@@ -15,7 +16,11 @@ export class CameraComponent implements OnInit {
   sepia: boolean;
   invert: boolean;
   flip: boolean;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  back2map() {
+    this.router.navigate(['/map']);
+  }
 
   ngOnInit() {
     navigator.mediaDevices.getUserMedia({

@@ -6,7 +6,6 @@
   "display": "standalone",
   "scope": ".",
   "start_url": "/index.html",
-  "orientation": "portrait-primary",
   "description": "A simple Instagram Clone, implementing a lot of PWA love.",
   "dir": "ltr",
   "lang": "en-US",
