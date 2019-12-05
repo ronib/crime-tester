@@ -41,7 +41,10 @@ export class MapComponent implements OnInit {
   items1 = [{
     type: 'Call',
     from: 'Itai',
-    to: 'Oren'
+    fromOwner : true,
+    toOwner : false,
+    to: 'Oren',
+    duration : "00:00:15"
   }
     ,
   {
@@ -160,7 +163,7 @@ export class MapComponent implements OnInit {
     //this.displayMarkers(this.markersData);
     this.addCurrentLocationButton();
 
-    this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 10000);
+    this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 20000);
     this.prevEventMarkers = [];
     // });
 
