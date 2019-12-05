@@ -32,7 +32,33 @@ export class MapComponent implements OnInit {
   prevCurrMarker: any;
   prevEventMarkers: any;
   lastTimeFetched : Date;
+
   mock = [{ "updateTime": "2019-12-04T12:15:51.621Z", "event": "POI", "data": [{ "owner": "killer", "points": [{ "lon": "32.090280", "lat": "34.820134" }, { "lon": "32.087415", "lat": "34.812946" }, { "lon": "32.090677", "lat": "34.805180" }, { "lon": "32.091011", "lat": "34.804824" }, { "lon": "32.091155", "lat": "34.804372" }] }] }];
+
+
+  items = [{
+    type: 'Call',
+    from: 'Itai',
+    to: 'Oren'
+  }
+    ,
+    {
+      type: 'SMS',
+      body: 'זרקתי את הנשק',
+      from: 'Itai',
+      to: 'David',
+      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
+    },
+
+    {
+      type: 'image',
+      from: 'Itai',
+      to: 'David',
+      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
+    }
+  ];
+
+
   constructor(private mapService: MapService,
     private renderer2: Renderer2,
     private store: Store<{ mapState: MapState }>,
@@ -45,12 +71,12 @@ export class MapComponent implements OnInit {
 
   doStuff() {
     this.http.get(environment.dataUrl).subscribe((data: any) => {
-      //console.log(data); 
+      //console.log(data);
       if (data.length != this.lastIndex) {
         this.lastIndex = data.length;
         console.log('writing index : ' + JSON.stringify(data[data.length - 1]));
         console.log(this.markersData);
-        
+
         if (data && data[data.length-1] && data[data.length-1].data)
           this.markersData = data[data.length - 1].data;
 
@@ -102,7 +128,7 @@ export class MapComponent implements OnInit {
         var Seconds_from_T1_to_T2 = dif / 1000;
         Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
       }
-      
+
 
       if (Seconds_Between_Dates > 60){
         this.lastTimeFetched = new Date();
@@ -113,21 +139,21 @@ export class MapComponent implements OnInit {
           center: target,
           zoom: 12,
           bearing: 0,
-  
+
           // These options control the flight curve, making it move
           // slowly and zoom out almost completely before starting
           // to pan.
           speed: 1, // make the flying slow
           curve: 1, // change the speed at which it zooms out
-  
+
           // This can be any easing function: it takes a number between
           // 0 and 1 and returns another number between 0 and 1.
           easing: function (t) { return t; }
         });
-  
+
       }
 
-      
+
 
       this.displayCurrMarker(target);
 
@@ -167,7 +193,7 @@ export class MapComponent implements OnInit {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c;
     //if (d>1) return Math.round(d)+"km";
-    //else if (d<=1) 
+    //else if (d<=1)
       return Math.round(d*1000);
     //return d;
   }
@@ -201,7 +227,7 @@ export class MapComponent implements OnInit {
 
     let j = JSON.stringify(closestLocationData);
     //if (this.closesPointInFocus === j){
-    //  return; //already in focus 
+    //  return; //already in focus
     //}
 
     console.log('closes location : ' + j);
@@ -214,7 +240,7 @@ export class MapComponent implements OnInit {
       let closesLocationPoint = null;
       let minimalTimeSeconds = 999999999;
       pointsArray.forEach(locationPoint=>{
-        let locationTime = new Date(locationPoint.Time); 
+        let locationTime = new Date(locationPoint.Time);
         var dif = eventTime.getTime() - locationTime.getTime();
         var Seconds_from_T1_to_T2 = dif / 1000;
         var Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
@@ -231,9 +257,9 @@ export class MapComponent implements OnInit {
       if (closestLocationJson ===this.closesPointInFocus){
         pointsToDisplayArray.push(testPoint);
       }
-      
+
     });
-    
+
 
     console.log(pointsToDisplayArray);
 }
@@ -241,7 +267,7 @@ export class MapComponent implements OnInit {
 
 
   displayMarkers(markersData: any[]) {
-    
+
     const dataLine = [];
     this.prevEventMarkers.forEach(obj=>{
       obj.remove();
@@ -252,11 +278,11 @@ export class MapComponent implements OnInit {
       marker.points.forEach(point => {
         if (point.lat && point.lon) {
           let el = this.renderer2.createElement('div');
-          el.addEventListener('click', () => 
-            { 
+          el.addEventListener('click', () =>
+            {
               console.log('click', marker);
             }
-); 
+);
           el.className = 'marker';
           const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
           let distanceFromThisMarkerToThePosition = this.distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
@@ -273,7 +299,7 @@ export class MapComponent implements OnInit {
       });
     });
 
-    
+
     this.map.on('load', () => {
       // Insert the layer beneath any symbol layer.
       var layers = this.map.getStyle().layers;
