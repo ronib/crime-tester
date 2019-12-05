@@ -8,6 +8,8 @@ import { CarusalComponent } from './carusal/carusal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventItemComponent } from './event-item/event-item.component';
 import { MatCard, MatCardModule } from '@angular/material';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { MatCard, MatCardModule } from '@angular/material';
     CommonModule,
     FormsModule,
     NgbModule,
-    MatCardModule
+    MatCardModule,
+    MDBBootstrapModule.forRoot()
   ],
   exports: [MapComponent, CameraComponent]
 })
