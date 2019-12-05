@@ -61,6 +61,7 @@ export class MapComponent implements OnInit {
     type: 'image',
     from: 'Itai',
     to: 'David',
+    body : 'אני והיפות שלי....',
     image: 'https://d.newsweek.com/en/full/1531533/us-lifestyle-weapons.webp?w=737&f=64bcf786dc5877fbc8a0da474b6fa3b6'
   }]
 
@@ -68,14 +69,17 @@ export class MapComponent implements OnInit {
     {
       type: 'Call',
       from: 'Itai',
-      to: 'Oren'
+      to: 'Halid Greenberg',
+      fromOwner: true,
+      toOwner: false,
+      duration: "00:10:03"
     }
     ,
     {
       type: 'Sms',
       body: 'החלפתי את הכדורים',
       from: 'Itai',
-      to: 'Drug Dealer',
+      to: 'Drug Store',
       image: 'https://dlg7f0e93aole.cloudfront.net/wp-content/uploads/China-pharmaceutical-programme.jpg'
     }]
 
@@ -90,7 +94,7 @@ export class MapComponent implements OnInit {
     ,
     {
       type: 'Sms',
-      body: 'זרקתי את הנשק',
+      body: 'נפתרתי מהעסק',
       from: 'Itai',
       to: 'David',
       image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
@@ -124,7 +128,10 @@ export class MapComponent implements OnInit {
   {
     type: 'Call',
     from: 'Itai',
-    to: 'Oren'
+    fromOwner: true,
+    toOwner: false,
+    to: 'Oren',
+    duration: "00:00:43"
   }
   ];
 
