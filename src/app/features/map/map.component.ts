@@ -232,16 +232,16 @@ export class MapComponent implements OnInit {
   }
 
   displayCurrMarker(target) {
-    if (this.prevCurrMarker) {
-      this.prevCurrMarker.remove();
-    }
+    //if (this.prevCurrMarker) {
+    //  this.prevCurrMarker.remove();
+    //}
 
-    let el = this.renderer2.createElement('div');
-    el.className = 'marker-curr';
-    this.prevCurrMarker = new mapboxgl.Marker(el);
+   // let el = this.renderer2.createElement('div');
+    //el.className = 'marker-curr';
+    //this.prevCurrMarker = new mapboxgl.Marker(el);
 
-    this.prevCurrMarker.setLngLat(target)
-      .addTo(this.map);
+    //this.prevCurrMarker.setLngLat(target)
+      //.addTo(this.map);
 
   }
 
