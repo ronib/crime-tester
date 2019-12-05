@@ -199,7 +199,7 @@ export class MapComponent implements OnInit {
   }
 
   moshe(){
-    let minimalDistanceInMeters = 4000;
+    let minimalDistanceInMeters = 100;
     let closestPotition = 100000;
     let closestLocationData = null;
     let pointsArray  = [];
