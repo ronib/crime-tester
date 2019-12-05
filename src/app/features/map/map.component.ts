@@ -25,25 +25,66 @@ export class MapComponent implements OnInit {
   setIntervalId = null;
   map: mapboxgl.Map;
   markersData: any[];
-  closesPointInFocus : string;
-  currentPosition : any;
+  closesPointInFocus: string;
+  currentPosition: any;
   mySubscription: Subscription;
   lastIndex: number;
   prevCurrMarker: any;
   prevEventMarkers: any;
-  lastTimeFetched : Date;
+  lastTimeFetched: Date;
 
   mock = [{ "updateTime": "2019-12-04T12:15:51.621Z", "event": "POI", "data": [{ "owner": "killer", "points": [{ "lon": "32.090280", "lat": "34.820134" }, { "lon": "32.087415", "lat": "34.812946" }, { "lon": "32.090677", "lat": "34.805180" }, { "lon": "32.091011", "lat": "34.804824" }, { "lon": "32.091155", "lat": "34.804372" }] }] }];
 
-
-  items = [/*{
+  isData = false;
+  index = 0;
+  items = [];
+  items1 = [{
     type: 'Call',
     from: 'Itai',
     to: 'Oren'
   }
     ,
+  {
+    type: 'Sms',
+    body: 'זרקתי את הנשק',
+    from: 'Itai',
+    to: 'David',
+    image: 'https://ichef.bbci.co.uk/news/660/cpsprodpb/6C7F/production/_106957772_mediaitem106957771.jpg'
+  },
+
+  {
+    type: 'image',
+    from: 'Itai',
+    to: 'David',
+    image: 'https://d.newsweek.com/en/full/1531533/us-lifestyle-weapons.webp?w=737&f=64bcf786dc5877fbc8a0da474b6fa3b6'
+  }]
+
+  items2 = [
+    {
+      type: 'Call',
+      from: 'Itai',
+      to: 'Oren'
+    }
+    ,
     {
       type: 'SMS',
+      body: 'החלפתי את הכדורים',
+      from: 'Itai',
+      to: 'Drug Dealer',
+      image: 'https://dlg7f0e93aole.cloudfront.net/wp-content/uploads/China-pharmaceutical-programme.jpg'
+    }]
+
+  items3 = [
+
+    {
+      type: 'image',
+      from: 'Mule',
+      to: 'Police officer',
+      image: 'https://marijuanastox.com/wp-content/uploads/2019/10/f-10.jpg'
+    }
+    ,
+    {
+      type: 'Sms',
       body: 'זרקתי את הנשק',
       from: 'Itai',
       to: 'David',
@@ -54,8 +95,32 @@ export class MapComponent implements OnInit {
       type: 'image',
       from: 'Itai',
       to: 'David',
-      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'
-    }*/
+      image: 'https://www.thelocal.ch/userdata/images/article/6833f757fe12c9b637d9b3224cb5c0a570801fb6628c91c912a7326fc9eedbf7.jpg'
+    },
+    {
+      type: 'Call',
+      from: 'Itai',
+      to: 'Oren'
+    },
+    {
+      type: 'SMS',
+      body: 'זרקתי את הנשק',
+      from: 'Itai',
+      to: 'David',
+      image: 'https://www.economist.com/sites/default/files/imagecache/640-width/20190803_USP003_0.jpg'
+    }]
+
+  items4 = [{
+    type: 'image',
+    from: 'Itai',
+    to: 'David',
+    image: 'https://compote.slate.com/images/8e2336c3-267b-4c1d-8e87-912027ed36f4.jpeg?width=780&height=520&rect=1560x1040&offset=0x0'
+  },
+  {
+    type: 'Call',
+    from: 'Itai',
+    to: 'Oren'
+  }
   ];
 
 
@@ -77,7 +142,7 @@ export class MapComponent implements OnInit {
         console.log('writing index : ' + JSON.stringify(data[data.length - 1]));
         console.log(this.markersData);
 
-        if (data && data[data.length-1] && data[data.length-1].data)
+        if (data && data[data.length - 1] && data[data.length - 1].data)
           this.markersData = data[data.length - 1].data;
 
         this.displayMarkers(this.markersData);
@@ -95,7 +160,7 @@ export class MapComponent implements OnInit {
     //this.displayMarkers(this.markersData);
     this.addCurrentLocationButton();
 
-    this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 2000);
+    this.setIntervalId = setInterval(() => { this.focusCurrentLocation(); }, 10000);
     this.prevEventMarkers = [];
     // });
 
@@ -121,16 +186,15 @@ export class MapComponent implements OnInit {
     navigator.geolocation.getCurrentPosition((pos) => {
       const target = [pos.coords.longitude, pos.coords.latitude] as mapboxgl.LngLatLike;
       this.currentPosition = target;
-
       var Seconds_Between_Dates = 999;
-      if (this.lastTimeFetched){
+      if (this.lastTimeFetched) {
         var dif = new Date().getTime() - this.lastTimeFetched.getTime();
         var Seconds_from_T1_to_T2 = dif / 1000;
         Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
       }
 
 
-      if (Seconds_Between_Dates > 60){
+      if (Seconds_Between_Dates > 60) {
         this.lastTimeFetched = new Date();
         console.log("fly to", target);
         this.map.flyTo({
@@ -183,42 +247,72 @@ export class MapComponent implements OnInit {
     this.map.addControl(new mapboxgl.NavigationControl());
   }
 
-  distance(lat1,lon1,lat2,lon2) {
+  distance(lat1, lon1, lat2, lon2) {
     var R = 6371; // km (change this constant to get miles)
-    var dLat = (lat2-lat1) * Math.PI / 180;
-    var dLon = (lon2-lon1) * Math.PI / 180;
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(lat1 * Math.PI / 180 ) * Math.cos(lat2 * Math.PI / 180 ) *
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
     //if (d>1) return Math.round(d)+"km";
     //else if (d<=1)
-      return Math.round(d*1000);
+    return Math.round(d * 1000);
     //return d;
   }
 
-  moshe(){
+  moshe() {
+
+    if (this.isData) {
+      this.index++;
+      if (this.index == 1) {
+        this.items = this.items1;
+      }
+
+      if (this.index == 2) {
+        this.items = this.items2;
+      }
+
+      if (this.index == 3) {
+        this.items = this.items3;
+      }
+
+      if (this.index == 4) {
+        this.items = this.items4;
+      }
+
+      if (this.index >= 5)
+        this.items = [];
+    }
+
+    return;
+
     let minimalDistanceInMeters = 100;
     let closestPotition = 100000;
     let closestLocationData = null;
-    let pointsArray  = [];
+    let pointsArray = [];
     let otherPointsArray = [];
     this.markersData.forEach(marker => {
       marker.points.forEach(point => {
         if (point.lat && point.lon) {
           pointsArray.push(point);
-          let distanceFromThisMarkerToThePosition = this.distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
-          if (closestPotition > distanceFromThisMarkerToThePosition){
-            closestPotition = distanceFromThisMarkerToThePosition;
-            closestLocationData = point;
+
+          if (this.currentPosition) {
+            let distanceFromThisMarkerToThePosition = this.distance(this.currentPosition[0], this.currentPosition[1], point.lat, point.lon);
+            if (closestPotition > distanceFromThisMarkerToThePosition) {
+              closestPotition = distanceFromThisMarkerToThePosition;
+              closestLocationData = point;
+            }
           }
-        }else{
+
+        } else {
           otherPointsArray.push(point);
-        }});
+        }
+      });
     });
 
-    if (closestPotition > minimalDistanceInMeters){
+    if (closestPotition > minimalDistanceInMeters) {
       console.log('still not close enough');
       return;
     }
@@ -235,26 +329,26 @@ export class MapComponent implements OnInit {
 
 
     let pointsToDisplayArray = [];
-    otherPointsArray.forEach(testPoint=>{
+    otherPointsArray.forEach(testPoint => {
       let eventTime = new Date(testPoint.Time);
       let closesLocationPoint = null;
       let minimalTimeSeconds = 999999999;
-      pointsArray.forEach(locationPoint=>{
+      pointsArray.forEach(locationPoint => {
         let locationTime = new Date(locationPoint.Time);
         var dif = eventTime.getTime() - locationTime.getTime();
         var Seconds_from_T1_to_T2 = dif / 1000;
         var Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
 
-        if (minimalTimeSeconds > Seconds_Between_Dates){
+        if (minimalTimeSeconds > Seconds_Between_Dates) {
           minimalTimeSeconds = Seconds_Between_Dates;
-          closesLocationPoint= locationPoint;
+          closesLocationPoint = locationPoint;
         }
       });
 
       //now we have the closes location
       let closestLocationJson = JSON.stringify(closesLocationPoint);
 
-      if (closestLocationJson ===this.closesPointInFocus){
+      if (closestLocationJson === this.closesPointInFocus) {
         pointsToDisplayArray.push(testPoint);
       }
 
@@ -262,16 +356,16 @@ export class MapComponent implements OnInit {
 
 
     //console.log(pointsToDisplayArray);
-    this.items = [];
-    pointsToDisplayArray.forEach(item=> this.items.push(item));
-}
+    //this.items = [];
+    //pointsToDisplayArray.forEach(item=> this.items.push(item));
+  }
 
 
 
   displayMarkers(markersData: any[]) {
 
     const dataLine = [];
-    this.prevEventMarkers.forEach(obj=>{
+    this.prevEventMarkers.forEach(obj => {
       obj.remove();
     });
 
@@ -280,14 +374,13 @@ export class MapComponent implements OnInit {
       marker.points.forEach(point => {
         if (point.lat && point.lon) {
           let el = this.renderer2.createElement('div');
-          el.addEventListener('click', () =>
-            {
-              console.log('click', marker);
-            }
-);
+          el.addEventListener('click', () => {
+            console.log('click', marker);
+          }
+          );
           el.className = 'marker';
           const coordinate = [point.lat, point.lon] as mapboxgl.LngLatLike;
-          let distanceFromThisMarkerToThePosition = this.distance(this.currentPosition[0], this.currentPosition[1],point.lat, point.lon );
+          //let distanceFromThisMarkerToThePosition = this.distance(this.currentPosition[0], this.currentPosition[1], point.lat, point.lon);
           dataLine.push(coordinate);
           let markerObj = new mapboxgl.Marker(el);
 
@@ -367,6 +460,8 @@ export class MapComponent implements OnInit {
     });
 
 
+    if (this.markersData.length > 0)
+      this.isData = true;
     this.moshe();
   }
 }

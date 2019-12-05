@@ -1,15 +1,15 @@
 <div class="event-item">
 
   <div class="contnet">
-    <div  *ngIf="data.type">Type:{{data.Type}}</div>
+    <div  *ngIf="data.type">Type:{{data.type}}</div>
     <div *ngIf="data.body">
-      Body:{{data.Body}}
+      Body:{{data.body}}
     </div>
-    <div>From: {{data.From}}</div>
-    <div>To: {{data.To}}</div>
+    <div *ngIf="data.from">From: {{data.from}}</div>
+    <div *ngIf="data.to">To: {{data.to}}</div>
   </div>
-  <div class="image" *ngIf="data.Image">
-    <img class="aaa" mat-card-image src="{{data.Image}}">
+  <div class="image" *ngIf="data.image">
+    <img class="aaa" mat-card-image src="{{data.image}}">
   </div>
 <!--    <mat-card class="example-card">-->
 <!--      -->
